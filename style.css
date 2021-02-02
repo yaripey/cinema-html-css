@@ -640,4 +640,20 @@ input:focus + .sit-text {
     transform: none;
     box-shadow: none;
   }
+
+  .buy-tickets {
+    width: 200px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .path-link {
+    font-size: 15px;
+  }
+
+  .path-link:before {
+    top: 20px;
+  }
 }
