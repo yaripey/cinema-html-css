@@ -351,7 +351,7 @@ h1 {
   border: 2px solid teal;
 }
 
-.sits {
+.seats {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -381,7 +381,7 @@ h1 {
   height: 25px;
 }
 
-.sits-buttons {
+.seats-buttons {
   margin-top: 20px;
   width: 70%;
   display: flex;
@@ -409,7 +409,7 @@ h1 {
   background: lightgrey;
 }
 
-.sit-check {
+.seat-check {
   position: absolute;
   appearance: none;
   -webkit-appearance: none;
@@ -422,7 +422,7 @@ h1 {
   overflow: hidden;
 }
 
-.sit-text {
+.seat-text {
   line-height: 40px;
   font-size: 25px;
   font-family: "Roboto", sans-serif;
@@ -439,12 +439,12 @@ h1 {
   transition: all 0.2s ease;
 }
 
-.sit-text:hover {
+.seat-text:hover {
   transform: translateY(-5px) scale(1.06);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-.sit-check:before {
+.seat-check:before {
   display: block;
   content: "";
   background: grey;
@@ -456,17 +456,17 @@ h1 {
   left: 0;
 }
 
-.sit-check:checked + .sit-text {
+.seat-check:checked + .seat-text {
   background: teal;
   color: white;
 }
 
-.sit-check:disabled + .sit-text {
+.seat-check:disabled + .seat-text {
   background: lightgrey;
   color: grey;
 }
 
-.sit-check:disabled:hover + .sit-text {
+.seat-check:disabled:hover + .seat-text {
   transform: none;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   cursor: default;
@@ -485,7 +485,7 @@ footer {
   width: 100%;
 }
 
-input:focus + .sit-text {
+input:focus + .seat-text {
   outline: 1px solid black;
 }
 
@@ -527,14 +527,14 @@ input:focus + .sit-text {
 }
 
 @media (max-width: 1400px) {
-  .sit-text {
+  .seat-text {
     width: 30px;
     height: 30px;
     font-size: 20px;
     line-height: 30px;
   }
 
-  .sit-check:before {
+  .seat-check:before {
     width: 30px;
     height: 30px;
   }
@@ -570,14 +570,14 @@ input:focus + .sit-text {
     padding: 20px;
   }
 
-  .sit-text {
+  .seat-text {
     width: 40px;
     height: 40px;
     font-size: 25px;
     line-height: 40px;
   }
 
-  .sit-check:before {
+  .seat-check:before {
     width: 40px;
     height: 40px;
   }
@@ -615,7 +615,7 @@ input:focus + .sit-text {
     flex-direction: column;
   }
 
-  .sits-buttons {
+  .seats-buttons {
     width: 100%;
   }
 
@@ -651,19 +651,19 @@ input:focus + .sit-text {
     font-size: 30px;
   }
 
-  .sit-text {
+  .seat-text {
     width: 25px;
     height: 25px;
     font-size: 15px;
     line-height: 25px;
   }
 
-  .sit-check:before {
+  .seat-check:before {
     width: 25px;
     height: 25px;
   }
 
-  .sit-text:hover {
+  .seat-text:hover {
     transform: none;
     box-shadow: none;
   }
