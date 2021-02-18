@@ -111,3 +111,4 @@ function createSeats(seatsData) {
     `
   ).join('')
 }
+
