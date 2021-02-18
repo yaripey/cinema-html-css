@@ -1,8 +1,8 @@
 import pageInit from './pageInit.js'
 
-const url = 'cinema-html-css/'
+const url = 'https://yaripey.github.io/cinema-html-css/'
 
 export default function pageSwitcher(destination) {
-  window.history.pushState(null, null, destination + url)
+  window.history.pushState(null, null, url + destination)
   pageInit();
 }
