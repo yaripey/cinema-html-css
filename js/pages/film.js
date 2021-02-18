@@ -179,7 +179,7 @@ const filmPage = (rootElem, filmID) => {
                   <div>Дата: ${ticket.session.date}</div>
                   <div>Час: ${ticket.session.time}</div>
                   <div>Ряд: ${parseInt(ticket.row) + 1}</div>
-                  <div>Місце: ${praseInt(ticket.seat) + 1}</div>
+                  <div>Місце: ${parseInt(ticket.seat) + 1}</div>
                 </div>
               `
               ticketBlocks.appendChild(ticketBlock)
