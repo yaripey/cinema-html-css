@@ -4,7 +4,7 @@ import pageInit from './pages/pageInit.js'
 const headerLink = document.querySelector('.logo')
 headerLink.addEventListener('click', (e) => {
   e.preventDefault()
-  pageSwitcher('/')
+  pageSwitcher('')
 })
 
 pageInit()
