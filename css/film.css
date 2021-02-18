@@ -276,3 +276,19 @@ legend {
 .time-block {
   display: flex;
 }
+
+@media (max-width: 1200px) {
+  .information {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .film-poster {
+    margin-bottom: 20px;
+  }
+
+  .date-time-form {
+    width: 70%;
+    margin: auto;
+  }
+}
