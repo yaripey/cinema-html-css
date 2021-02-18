@@ -288,7 +288,44 @@ legend {
   }
 
   .date-time-form {
+    margin: auto;
+  }
+
+  .about-film {
     width: 70%;
     margin: auto;
+  }
+
+  .row-number {
+    font-size: 15px;
+  }
+
+  .hall-row:nth-child(2n) {
+    height: 40px;
+    background-color: white;
+  }
+
+  .hall-row {
+    padding: 0px;
+  }
+  .seat-text {
+    width: 25px;
+    height: 25px;
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .seat-check:before {
+    width: 25px;
+    height: 25px;
+  }
+
+  .seat-text:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .description p {
+    font-size: 20px;
   }
 }

@@ -49,4 +49,18 @@ body {
   #root {
     width: 100%;
   }
+  header {
+    height: 50px;
+    position: sticky;
+    top: 0px;
+    z-index: 2000;
+  }
+
+  .settings-buttons-link {
+    height: 50px;
+    width: 50px;
+  }
+  .logo {
+    font-size: 20px;
+  }
 }

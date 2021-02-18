@@ -81,6 +81,8 @@ const filmPage = (rootElem, filmID) => {
       `
 
       document.forms.dateTimeForm.addEventListener('input', (e) => {
+        const ticketsTable = document.querySelector('#check-table')
+        const seatsBlock = document.querySelector('.seats-buttons')
         if(e.target.closest('.date-block')) {
           const dateValue = document.forms.dateTimeForm.date.value
           const timeBlock = document.querySelector('#timeBlock')
@@ -90,11 +92,16 @@ const filmPage = (rootElem, filmID) => {
             <div class="input-label">${session.time}</div>
           </label>
           `).join('')}`
+          seatsBlock.innerHTML = `
+            <div>
+              Будь ласка, оберіть час.
+            </div>
+          `
+          ticketsTable.innerHTML = ''
         }
         if (e.target.closest('.time-block')) {
           const chosenSessionID = document.forms.dateTimeForm.time.value
           const chosenSession = film.sessions.find(session => session.id === chosenSessionID)
-          const seatsBlock = document.querySelector('.seats-buttons')
           seatsBlock.innerHTML = `${chosenSession.seats.map((row, rowNumber) => `
             <div class="hall-row">
               <div class="row-number">${rowNumber + 1}</div>
@@ -114,6 +121,7 @@ const filmPage = (rootElem, filmID) => {
               </div>
             </div>
           `).join('')}`
+          ticketsTable.innerHTML = ''
         }
         if (e.target.closest('.seat-label')) {
           const checkboxes = document.querySelectorAll('.seat-check:checked')
@@ -122,7 +130,7 @@ const filmPage = (rootElem, filmID) => {
             values.push(checkbox.value)
           }
           const sum = values.reduce((acc, value) => acc + 60, 0)
-          const ticketsTable = document.querySelector('#check-table')
+          
           const checkSumAmount = document.querySelector('.check-sum-amount')
           
           ticketsTable.innerHTML = `
@@ -159,7 +167,6 @@ const filmPage = (rootElem, filmID) => {
         `
         buyTickets(sessionID, values)
           .then(res => res.json())
-          // .then(res => ticketsPage(rootElem, res.data.buyTickets))
           .then(res => {
             const tickets = res.data.buyTickets
             const ticketsCheck = document.createElement('div')
