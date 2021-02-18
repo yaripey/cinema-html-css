@@ -178,8 +178,8 @@ const filmPage = (rootElem, filmID) => {
                   <div>Фільм: ${ticket.session.film.name}</div>
                   <div>Дата: ${ticket.session.date}</div>
                   <div>Час: ${ticket.session.time}</div>
-                  <div>Ряд: ${ticket.row}</div>
-                  <div>Місце: ${ticket.seat}</div>
+                  <div>Ряд: ${parseInt(ticket.row) + 1}</div>
+                  <div>Місце: ${praseInt(ticket.seat) + 1}</div>
                 </div>
               `
               ticketBlocks.appendChild(ticketBlock)
