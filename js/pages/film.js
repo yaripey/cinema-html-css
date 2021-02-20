@@ -1,14 +1,11 @@
 import { getFilm, buyTickets } from '../common/queries.js'
+import { createWaiterMarkUp, transformDate } from '../common/helpers.js'
 
 import pageSwitcher from './pageSwitcher.js'
 
 const filmPage = (rootElem, filmID) => {
+  rootElem.innerHTML = createWaiterMarkUp()
 
-  rootElem.innerHTML = `
-    <div>
-      Retrieving data...
-    </div>
-  `
   getFilm(filmID)
     .then(res => res.json())
     .then(res => {
@@ -36,7 +33,7 @@ const filmPage = (rootElem, filmID) => {
               ${dates.map(date => `
               <label>
                 <input type="radio" class="radio-box hidden-input" name="date" value="${date}">
-                <div class="input-label">${date}</div>
+                <div class="input-label">${transformDate(date)}</div>
               </label>
               `).join('')}
             </div>
@@ -75,14 +72,14 @@ const filmPage = (rootElem, filmID) => {
               <div class="check-sum-amount">0 грн</div>
             </div>
           </div>
-          <button class="buy-tickets">Придбати</button>
+          <button class="buy-tickets" disabled>Придбати</button>
         </div>
       </section>
       `
-
       document.forms.dateTimeForm.addEventListener('input', (e) => {
         const ticketsTable = document.querySelector('#check-table')
         const seatsBlock = document.querySelector('.seats-buttons')
+        const buyButton = document.querySelector('.buy-tickets')
         if(e.target.closest('.date-block')) {
           const dateValue = document.forms.dateTimeForm.date.value
           const timeBlock = document.querySelector('#timeBlock')
@@ -92,6 +89,7 @@ const filmPage = (rootElem, filmID) => {
             <div class="input-label">${session.time}</div>
           </label>
           `).join('')}`
+          buyButton.disabled = true
           seatsBlock.innerHTML = `
             <div>
               Будь ласка, оберіть час.
@@ -122,6 +120,7 @@ const filmPage = (rootElem, filmID) => {
             </div>
           `).join('')}`
           ticketsTable.innerHTML = ''
+          buyButton.disabled = true
         }
         if (e.target.closest('.seat-label')) {
           const checkboxes = document.querySelectorAll('.seat-check:checked')
@@ -129,10 +128,12 @@ const filmPage = (rootElem, filmID) => {
           for(let checkbox of checkboxes.values()) {
             values.push(checkbox.value)
           }
-          const sum = values.reduce((acc, value) => acc + 60, 0)
-          
+          buyButton.disabled = false
+          if (values.length === 0) {
+            buyButton.disabled = true
+          }
+          const sum = values.reduce((acc, value) => acc + 60, 0) 
           const checkSumAmount = document.querySelector('.check-sum-amount')
-          
           ticketsTable.innerHTML = `
             ${values.map(ticket => {
               const splitTicket = ticket.split('-')
@@ -204,9 +205,7 @@ const filmPage = (rootElem, filmID) => {
 
             rootElem.innerHTML = ''
             rootElem.appendChild(ticketsCheck)
-          })
-          
-          
+          })     
       })
     })
 }

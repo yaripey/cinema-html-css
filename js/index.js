@@ -7,12 +7,10 @@ headerLink.addEventListener('click', (e) => {
   pageSwitcher('')
 })
 
-pageInit()
+const administrationLink = document.querySelector('.settings-buttons-link')
+administrationLink.addEventListener('click', (e) => {
+  e.preventDefault()
+  pageSwitcher('?page=administration')
+})
 
-// document.querySelector("#testbutton").addEventListener('click', (e) => {
-//   e.preventDefault()
-//   const search = window.location.search
-//   const urlParams = new URLSearchParams(search)
-//   const test = urlParams.get('test')
-//   console.log('super duper', test)
-// })
+pageInit()

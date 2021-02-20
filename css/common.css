@@ -19,6 +19,7 @@ body {
   flex-wrap: wrap;
   position: relative;
   transition: 0.1s ease;
+  padding-bottom: 20px;
 }
 
 #root.hidden {

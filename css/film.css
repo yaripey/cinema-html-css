@@ -16,7 +16,7 @@
 
 .description {
   max-width: 700px;
-  min-width: 400px;
+  /* min-width: 400px; */
 }
 
 .description p {
@@ -227,6 +227,16 @@ legend {
   transition: all 0.1s ease;
 }
 
+.buy-tickets:disabled {
+  background: grey;
+}
+
+.buy-tickets:disabled:hover {
+  background: grey;
+  cursor: default;
+  color: white;
+}
+
 .heading,
 .check-sum {
   display: flex;
@@ -266,10 +276,20 @@ legend {
   font-size: 35px;
 }
 
+.date-block,
+.time-block {
+  width: 100%;
+  overflow-x: scroll;
+}
+
 .ticket-block {
   margin: 20px 0;
   border-bottom: dotted 1px grey;
   padding-bottom: 20px;
+}
+
+.ticket-blocks {
+  margin-bottom: 30px;
 }
 
 .date-block,
@@ -327,5 +347,17 @@ legend {
 
   .description p {
     font-size: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .film-poster {
+    width: 300px;
+    height: 500px;
+    background-position: center;
+  }
+
+  .description p {
+    font-size: 15px;
   }
 }

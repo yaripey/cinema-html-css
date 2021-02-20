@@ -1,5 +1,5 @@
 const URL = 'https://cinema-task-backend.herokuapp.com/graphql'
-// const URL = 'http://localhost:4000/graphql'
+
 export const getAllFilms = () => fetch(URL, {
   method: 'POST',
   headers: {'Content-Type': 'application/json'},

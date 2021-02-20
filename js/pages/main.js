@@ -1,35 +1,35 @@
-import {getAllFilms} from '../common/queries.js'
+import { getAllFilms } from '../common/queries.js'
 import pageSwitcher from './pageSwitcher.js'
+import { 
+  createWaiterMarkUp, 
+  fetchErrorMarkUp,
+  shortenDescription
+} from '../common/helpers.js'
 
 const descriptionLength = 200
 
 const mainPage = (rootElem) => {
-  rootElem.innerHTML = `
-    Retrieving data...
-  `
+  rootElem.innerHTML = createWaiterMarkUp()
   
   getAllFilms()
     .then(res => res.json())
     .then(res => {
-      console.log(res)
       const films = res.data.allFilms
 
       rootElem.innerHTML = ''
 
-      const filmPosters = films.map(film => makeFilmPoster(film.name, film.description, film.posterLink, film.id))
+      const filmPosters = films.map(film => makeFilmPoster(
+        film.name,
+        film.description, 
+        film.posterLink, 
+        film.id))
       filmPosters.forEach(filmPoster => rootElem.append(filmPoster))
+    })
+    .catch(err => {
+      rootElem.innerHTML = fetchErrorMarkUp()
     })
 
 }
-
-function shortenDescription(string, length) {
-  if (string.length <= length) {
-    return string
-  }
-
-  return string.slice(0, length) + '...'
-}
-
 
 const makeFilmPoster = (name, description, posterLink, id) => {
   const filmPoster = document.createElement('a')
@@ -49,6 +49,5 @@ const makeFilmPoster = (name, description, posterLink, id) => {
   
   return filmPoster
 }
-
 
 export default mainPage
