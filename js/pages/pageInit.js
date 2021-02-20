@@ -8,7 +8,6 @@ export default function pageInit() {
   const search = window.location.search
   const urlParams = new URLSearchParams(search)
   const page = urlParams.get('page')
-  console.log('test')
   switch(page) {
     case 'administration': 
       administration(rootElem)

@@ -1,5 +1,5 @@
 import { getFilm, buyTickets } from '../common/queries.js'
-import { createWaiterMarkUp, transformDate } from '../common/helpers.js'
+import { createWaiterMarkUp, fetchErrorMarkUp, transformDate } from '../common/helpers.js'
 
 import pageSwitcher from './pageSwitcher.js'
 
@@ -208,6 +208,7 @@ const filmPage = (rootElem, filmID) => {
           })     
       })
     })
+    .catch(err => rootElem.innerHTML = fetchErrorMarkUp())
 }
 
 export default filmPage

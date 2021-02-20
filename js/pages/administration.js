@@ -1,13 +1,13 @@
 import { getAllFilms, newFilm, getHalls, newSession } from '../common/queries.js'
+import { fetchErrorMarkUp } from '../common/helpers.js'
 
-
-const adminPage = (anchor) => {
+const adminPage = (rootElem) => {
   const markUp = `
     <div>
       <select id="pageSelect">
         <option value="" disabled selected>Оберіть дію</option>
-        <option value="newFilm">Добавить фильм</option>
-        <option value="newSession">Добавить сеанс</option>
+        <option value="newFilm">Додати фільм</option>
+        <option value="newSession">Додати сеанс</option>
       <select>
       <form name="adminForm" id="action">
 
@@ -15,16 +15,16 @@ const adminPage = (anchor) => {
     </div>
   `
 
-  anchor.innerHTML = markUp
+  rootElem.innerHTML = markUp
   document.querySelector('#pageSelect').addEventListener('change', selectAdminAction)
 }
 
 function selectAdminAction(e) {
   const selectedAction = e.target.value
-  const actionAnchor = document.querySelector('#action')
+  const actionrootElem = document.querySelector('#action')
   switch(selectedAction) {
     case "newFilm": 
-      actionAnchor.innerHTML = `
+      actionrootElem.innerHTML = `
         <label for="filmName">Назва фільму</label>
         <input name="filmName" type="text">
         
@@ -45,11 +45,12 @@ function selectAdminAction(e) {
         newFilm(filmName, filmDesc, filmPosterLink)
           .then(res => res.json())
           .then(res => console.log(res))
+          .catch(err => rootElem.innerHTML = fetchErrorMarkUp())
       })
       break;
 
     case "newSession":
-      actionAnchor.innerHTML = `Processing`
+      actionrootElem.innerHTML = `Processing`
       getAllFilms()
         .then(res => res.json())
         .then(res => {
@@ -58,7 +59,7 @@ function selectAdminAction(e) {
             .then(res => res.json())
             .then(res => {
               const halls = res.data.getHalls
-              actionAnchor.innerHTML = `
+              actionrootElem.innerHTML = `
                 <select name="filmID">
                   <option selected disabled value="">Оберіть фільм</option>
                   ${films.map(film => `<option value="${film.id}">${film.name}</option>`)}
@@ -78,6 +79,7 @@ function selectAdminAction(e) {
                 </select>
                 <input type="submit" id="sessionSubmit" value="Створити">
               `
+            .catch(err => rootElem.innerHTML = fetchErrorMarkUp())
 
               document.querySelector('#sessionSubmit').addEventListener('click', (e) => {
                 e.preventDefault()
@@ -86,6 +88,7 @@ function selectAdminAction(e) {
                 newSession(form.date.value, form.time.value, form.filmID.value, form.hallID.value)
                   .then(res => res.json())
                   .then(res => console.log(res))
+                  .catch(err => rootElem.innerHTML = fetchErrorMarkUp())
               })
             })
 
